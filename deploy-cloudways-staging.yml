@@ -1,0 +1,104 @@
+name: Deploy to Staging
+on:
+  push:
+    branches:
+      - 'staging'
+
+jobs:
+  preflight:
+    name: Preflight/Config Setup
+    runs-on: ubuntu-latest
+    # Map step output to a job output, We have to map to the step "outputs" so we can reference the data in our first job as well as outside our first job
+    outputs:
+      host_ip: ""
+      themes: '["none"]'
+      site_url: ${{ steps.setup.outputs.site_url }}
+      environment: ${{ steps.setup.outputs.environment }}
+      username: ""
+      branch: ${{ steps.setup.outputs.branch }}
+      deployment: ${{ steps.deployment_data.outputs.deployment_id }}
+      run_id: ${{ github.run_id }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Branch Names
+        id: branch
+        uses: tj-actions/branch-names@v5.1
+
+      - name: Output Setup
+        id: setup
+        run: |
+          echo "::set-output name=site_url::https://usa-staging.catit.com"
+          echo "::set-output name=environment::staging"
+          echo "::set-output name=branch::${{ steps.branch.outputs.current_branch }}"
+
+      - name: Create Deployment
+        id: create_deployment
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repo}/deployments
+          repo: ${{ github.repository }}
+          ref: ${{ steps.setup.outputs.branch }}
+          environment: ${{ steps.setup.outputs.environment }}
+          mediaType: '{"previews": ["flash", "ant-man"]}'
+          required_contexts: '[]'
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Deployment Data
+        id: deployment_data
+        run: |
+          echo "::set-output name=deployment_id::${{ fromJson( steps.create_deployment.outputs.data ).id }}"
+
+      - name: Set Deployment Status to Pending
+        id: start_deployment
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repo}/deployments/:deployment/statuses
+          repo: ${{ github.repository }}
+          deployment: ${{ steps.deployment_data.outputs.deployment_id }}
+          environment: ${{ steps.setup.outputs.environment }}
+          environment_url: ${{ steps.setup.outputs.site_url }}
+          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          state: pending
+          mediaType: '{"previews": ["flash", "ant-man"]}'
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  lint:
+    name: Lint Release
+    uses: linchpin/actions/.github/workflows/phplint.yml@main
+    secrets:
+      packagist_auth: ${{ secrets.PACKAGIST_COMPOSER_AUTH_JSON }}
+
+  build:
+    name: Build Project
+    uses: linchpin/actions/.github/workflows/build.yml@main
+    needs: [preflight,lint]
+    with:
+      site_url: ${{ needs.preflight.outputs.site_url }}
+      themes: ${{ needs.preflight.outputs.themes }}
+      environment: ${{ needs.preflight.outputs.environment }}
+      branch: ${{ needs.preflight.outputs.branch }}
+    secrets:
+      packagist_auth: ${{ secrets.PACKAGIST_COMPOSER_AUTH_JSON }}
+      mantle: ${{ secrets.MANTLE_SECRET }}
+
+  deploy:
+    name: Deploy Project
+    uses: linchpin/actions/.github/workflows/deploy-cloudways.yml@main
+    needs: [preflight,build]
+    with:
+      host_ip: ${{ needs.preflight.outputs.host_ip }}
+      site_url: ${{ needs.preflight.outputs.site_url }}
+      environment: ${{ needs.preflight.outputs.environment }}
+      deployment: ${{ needs.preflight.outputs.deployment }}
+      deployment_path: ${{ needs.preflight.outputs.deployment_path }}
+      branch: ${{ needs.preflight.outputs.branch }}
+      workflow_run_id: ${{ github.run_id }}
+    secrets:
+      deployment_ssh_user: ${{ needs.preflight.outputs.username }}
+      deployment_ssh_key: ${{ secrets.CLOUDWAYS_SSH_KEY }}
+      gh_bot_token: ${{ secrets.GH_BOT_TOKEN }}
