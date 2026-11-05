@@ -42,7 +42,7 @@ agency down, we train your team and document the work as we go, and then we stay
 
 ## :compass: What we do
 
-| | |
+| | What it means for you |
 | :--- | :--- |
 | :building_construction: **Build** | Block themes, custom Gutenberg blocks and plugins on current WordPress, built to WCAG 2.2 AA[^a11y]. |
 | :electric_plug: **Integrate** | Commerce, CRM, forms, project tools and the other systems your organization already runs on. |
@@ -57,15 +57,13 @@ flowchart LR
     hello([First conversation]) --> proposal["Digital proposal<br/>priced from a real estimate"]
     proposal --> project["Scoped project<br/>build · integrate · test"]
     project --> launch["Launch<br/>training and docs"]
-    launch --> support(["Support package"])
-    support -- "new work" --> proposal
-    support -. "every night" .-> updates["Dependency updates<br/>tested before they ship"]
-    updates -.-> support
+    launch --> support(["Support package<br/>reports · nightly updates"])
+    support -. "new work" .-> proposal
 
     classDef brand fill:#3fc1d0,stroke:#0A3C41,color:#031e1e
     classDef deep fill:#031e1e,stroke:#3fc1d0,color:#ffffff
     class hello,support brand
-    class proposal,project,launch,updates deep
+    class proposal,project,launch deep
 ```
 
 ### Support you can see
@@ -87,7 +85,7 @@ Running above the line means the period is ahead of plan, not over budget.
 
 Press <kbd>.</kbd> on any repository below to browse it in GitHub's web editor, no clone needed.
 
-| Project | What it does | |
+| Project | What it does | Latest |
 | :--- | :--- | :---: |
 | [**psst**](https://github.com/linchpin/psst) | One-time, expiring secrets for WordPress. Encrypted in the browser, so the server only ever holds ciphertext. Try it at [psst.linchpin.com](https://psst.linchpin.com). | [![release](https://img.shields.io/github/v/release/linchpin/psst?color=3fc1d0&label=)](https://github.com/linchpin/psst/releases) |
 | [**skills**](https://github.com/linchpin/skills) | Our library of AI agent skills for WordPress, React and Cloudflare Workers projects. Works in Claude Code, GitHub Copilot, Codex and Cursor. | [![npm](https://img.shields.io/npm/v/@linchpinagency/skills?color=3fc1d0&label=)](https://www.npmjs.com/package/@linchpinagency/skills) |
@@ -100,7 +98,7 @@ Press <kbd>.</kbd> on any repository below to browse it in GitHub's web editor, 
 
 ### :jigsaw: On WordPress.org
 
-| Plugin | | |
+| Plugin | What it does | Latest |
 | :--- | :--- | :---: |
 | [Toggle wpautop](https://wordpress.org/plugins/toggle-wpautop/) | Turn off WordPress's automatic paragraphs one post at a time. Active on ![installs](https://img.shields.io/wordpress/plugin/installs/toggle-wpautop?color=3fc1d0&label=) sites.[^installs] | ![version](https://img.shields.io/wordpress/plugin/v/toggle-wpautop?color=3fc1d0&label=) |
 | [Courier Notices](https://wordpress.org/plugins/courier-notices/) | Site-wide notices and alerts, managed from the admin. | ![version](https://img.shields.io/wordpress/plugin/v/courier-notices?color=3fc1d0&label=) |
@@ -110,7 +108,7 @@ Press <kbd>.</kbd> on any repository below to browse it in GitHub's web editor, 
 <summary><b>Older plugins we still keep around</b></summary>
 <br>
 
-| Plugin | |
+| Plugin | What it does |
 | :--- | :--- |
 | [Mesh](https://github.com/linchpin/mesh) | Our page builder from the classic-editor era: content sections within pages, posts or custom post types. |
 | [Simple Subtitles](https://wordpress.org/plugins/simple-subtitles/) | A subtitle field for posts, pages and custom post types. |
