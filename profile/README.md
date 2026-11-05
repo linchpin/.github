@@ -29,12 +29,10 @@
 
 ---
 
-We build and care for WordPress for **higher education, nonprofits and B2B organizations**:
-teams with stakeholders to answer to, accessibility written into their contracts, and a
-budget smaller than the problem. We take on the complex integrations that would bog a larger
-agency down, we train your team and document the work as we go, and then we stay.
-
-~~A PDF with a number on it.~~ A proposal you can read online, priced from a real estimate.
+Linchpin is a boutique WordPress agency. We build, integrate and support WordPress for
+**higher education, nonprofits and B2B organizations**, often working as an extension of their
+own teams. Along the way we build and maintain our own plugins and tooling, and we share what
+we can here.
 
 > [!TIP]
 > **Looking for a WordPress partner?** Start at [linchpin.com](https://linchpin.com) or
@@ -42,40 +40,11 @@ agency down, we train your team and document the work as we go, and then we stay
 
 ## :compass: What we do
 
-| | What it means for you |
-| :--- | :--- |
-| :building_construction: **Build** | Block themes, custom Gutenberg blocks and plugins on current WordPress, built to WCAG 2.2 AA[^a11y]. |
-| :electric_plug: **Integrate** | Commerce, CRM, forms, project tools and the other systems your organization already runs on. |
-| :handshake: **Care for** | Support packages whose hours, burn and period reports you see in your own client portal, plus nightly dependency updates that are tested before they ship. |
-| :books: **Leave you capable** | Training and documentation are part of the deliverable, so your team can run what we built. |
-| :hammer_and_wrench: **Make our own products** | Client work runs on plugins and tooling we maintain ourselves. Some of it is below. |
-
-### From the first conversation to the long haul
-
-```mermaid
-flowchart LR
-    hello([First conversation]) --> proposal["Digital proposal<br/>priced from a real estimate"]
-    proposal --> project["Scoped project<br/>build · integrate · test"]
-    project --> launch["Launch<br/>training and docs"]
-    launch --> support(["Support package<br/>reports · nightly updates"])
-    support -. "new work" .-> proposal
-
-    classDef brand fill:#3fc1d0,stroke:#0A3C41,color:#031e1e
-    classDef deep fill:#031e1e,stroke:#3fc1d0,color:#ffffff
-    class hello,support brand
-    class proposal,project,launch deep
-```
-
-### Support you can see
-
-Hours are logged against your package and reported for each period in your portal. The pace
-line on those reports is plain arithmetic, and we show our working:
-
-$$
-\text{planned pace per month} = \frac{\text{period budget}}{\text{months in the period}}
-$$
-
-Running above the line means the period is ahead of plan, not over budget.
+- :building_construction: **Build.** Block themes, custom Gutenberg blocks and plugins on current WordPress, built to [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/).
+- :electric_plug: **Integrate.** WordPress connected to commerce, CRM, forms and the other systems an organization already runs on.
+- :handshake: **Support.** Long-term care and maintenance for the sites we build.
+- :books: **Document and train.** Documentation and training are part of every project, not an afterthought.
+- :hammer_and_wrench: **Make our own products.** Plugins and tooling we maintain and use across our work. Some of it is below.
 
 ## :package: Open source
 
@@ -100,7 +69,7 @@ Press <kbd>.</kbd> on any repository below to browse it in GitHub's web editor, 
 
 | Plugin | What it does | Latest |
 | :--- | :--- | :---: |
-| [Toggle wpautop](https://wordpress.org/plugins/toggle-wpautop/) | Turn off WordPress's automatic paragraphs one post at a time. Active on ![installs](https://img.shields.io/wordpress/plugin/installs/toggle-wpautop?color=3fc1d0&label=) sites.[^installs] | ![version](https://img.shields.io/wordpress/plugin/v/toggle-wpautop?color=3fc1d0&label=) |
+| [Toggle wpautop](https://wordpress.org/plugins/toggle-wpautop/) | Turn off WordPress's automatic paragraphs one post at a time. Active on ![installs](https://img.shields.io/wordpress/plugin/installs/toggle-wpautop?color=3fc1d0&label=) sites, per WordPress.org. | ![version](https://img.shields.io/wordpress/plugin/v/toggle-wpautop?color=3fc1d0&label=) |
 | [Courier Notices](https://wordpress.org/plugins/courier-notices/) | Site-wide notices and alerts, managed from the admin. | ![version](https://img.shields.io/wordpress/plugin/v/courier-notices?color=3fc1d0&label=) |
 | [Post Type Spotlight](https://wordpress.org/plugins/post-type-spotlight/) | A "featured" checkbox for any post type, queryable as a taxonomy. | ![version](https://img.shields.io/wordpress/plugin/v/post-type-spotlight?color=3fc1d0&label=) |
 
@@ -134,7 +103,7 @@ The process of a much larger shop, at the size of a small one:
 - [x] Conventional commits, so release-please writes the changelog and cuts the version
 - [x] Dependencies update continuously, into a reviewed maintenance branch rather than straight to production
 - [x] Documentation lives in the repository as Markdown, and publishes itself
-- [ ] Your project: [start a conversation](mailto:sayhi@linchpin.com)
+- [ ] Your pull request: issues and PRs are welcome on any of our public repositories
 
 A commit message is a release note, so we write them like one:
 
@@ -192,14 +161,4 @@ jobs:
 > WCAG 2.2 AA is the floor on everything we ship, our own sites included. If you hit a
 > barrier on one of them, tell us at [sayhi@linchpin.com](mailto:sayhi@linchpin.com).
 
----
-
-<div align="center">
-<sub>Built on WordPress, in the open where we can, by <a href="https://linchpin.com">Linchpin</a>.</sub>
-</div>
-
-[^a11y]: Web Content Accessibility Guidelines 2.2, level AA. Large clients, in higher
-    education and the public sector especially, write it into their contracts, so we hold
-    our own sites to it as well.
-
-[^installs]: Active installs as reported by WordPress.org, rounded the way WordPress.org rounds them.
+[![Linchpin](https://assets.linchpin.com/github/linchpin-github-repo-banner.jpg)](https://linchpin.com)
