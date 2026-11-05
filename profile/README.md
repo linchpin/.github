@@ -170,11 +170,11 @@ jobs:
       environment: staging
 ```
 
+</details>
+
 > [!WARNING]
 > Our Renovate presets merge non-major updates automatically. Read what a preset enables
 > before you extend it from your own repository.
-
-</details>
 
 <details>
 <summary><b>The stack</b></summary>
